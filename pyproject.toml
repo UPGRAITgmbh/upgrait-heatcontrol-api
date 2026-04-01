@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "upgrait-heatcontrol-api"
-version = "0.1.0.dev0"
+version = "0.1.0"
 description = "Async Python API client for the UPGRAIT HeatControl 3rd-party connector."
 readme = "README.md"
 requires-python = ">=3.12"

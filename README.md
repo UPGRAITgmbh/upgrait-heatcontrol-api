@@ -39,7 +39,7 @@ async def main() -> None:
         pairing = await client.async_start_pairing(
             ha_instance_id="example-ha-instance",
             display_name="Example Client",
-            integration_version="0.1.0.dev0",
+            integration_version="0.1.0",
         )
         print(pairing.expires_at)
 

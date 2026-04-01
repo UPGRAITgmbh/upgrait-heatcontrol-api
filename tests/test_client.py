@@ -66,7 +66,7 @@ def test_pairing_models_from_payloads() -> None:
             "result": {
                 "ha_instance_id": "ha-id",
                 "display_name": "Home Assistant",
-                "integration_version": "0.1.0-dev",
+                "integration_version": "0.1.0",
                 "revision": 2,
                 "confirmed_at": 456,
                 "server_public_key": "server_key",
@@ -99,7 +99,7 @@ def test_pairing_confirm_model_requires_non_empty_strings() -> None:
                 "result": {
                     "ha_instance_id": "ha-id",
                     "display_name": "Home Assistant",
-                    "integration_version": "0.1.0-dev",
+                    "integration_version": "0.1.0",
                     "revision": 2,
                     "confirmed_at": 456,
                     "server_public_key": " ",
