@@ -18,10 +18,11 @@ dependencies = [
   "zeroconf>=0.136,<1"
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
   "pytest>=8.3,<9",
-  "pytest-asyncio>=0.24,<1"
+  "pytest-asyncio>=0.24,<1",
+  "twine>=6,<7"
 ]
 
 [tool.setuptools]
