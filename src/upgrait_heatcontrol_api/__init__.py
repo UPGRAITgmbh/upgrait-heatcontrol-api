@@ -1,7 +1,7 @@
 """Public exports for the UPGRAIT HeatControl API package."""
 
 from .client import HeatControlApiClient
-from .connection import HeatControlConnection
+from .connection import EventCallback, HeatControlConnection
 from .crypto import generate_keypair
 from .discovery import (
     DEFAULT_PORT,
@@ -24,6 +24,7 @@ __all__ = [
     "DEFAULT_PORT",
     "DeviceInfo",
     "DiscoveryAdvertisement",
+    "EventCallback",
     "HeatControlApiClient",
     "HeatControlApiAuthError",
     "HeatControlApiConnectionError",

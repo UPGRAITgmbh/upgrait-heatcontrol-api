@@ -30,22 +30,40 @@ from upgrait_heatcontrol_api import HeatControlApiClient, generate_keypair
 
 
 async def main() -> None:
-    async with HeatControlApiClient(host="192.168.2.116", port=8001) as client:
+    async with HeatControlApiClient(host="<device-ip>") as client:
+        # Step 1: read device metadata
         device = await client.async_get_device_info()
         print(device.serial, device.version)
 
+        # Step 2: generate a keypair once and persist it for subsequent connections
         private_key, public_key = generate_keypair()
 
+        # Step 3: start pairing — the device will display a 6-digit PIN
+        # (requires new local interface, firmware version > 1610)
         pairing = await client.async_start_pairing(
             ha_instance_id="example-ha-instance",
             display_name="Example Client",
             integration_version="0.1.0",
         )
-        print(pairing.expires_at)
+        print(f"PIN expires at: {pairing.expires_at}")
 
-        # The 6-digit PIN must be entered by the user after it is shown on the UHC. (Only available in new local interface, version >1610)
-        # confirm = await client.async_confirm_pairing(...)
-        # connection = await client.async_connect_and_bind(...)
+        # Step 4: confirm with the PIN shown on the device
+        pin = input("Enter PIN: ")
+        confirm = await client.async_confirm_pairing(
+            pin=pin,
+            ha_instance_id="example-ha-instance",
+            display_name="Example Client",
+            integration_version="0.1.0",
+            ha_public_key=public_key,
+        )
+
+        # Step 5: open the persistent websocket connection
+        connection = await client.async_connect_and_bind(
+            ha_instance_id="example-ha-instance",
+            ha_private_key=private_key,
+            server_public_key=confirm.server_public_key,
+        )
+        print("Connected. Snapshot:", connection.snapshot)
 
 
 asyncio.run(main())

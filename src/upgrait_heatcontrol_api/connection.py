@@ -57,6 +57,17 @@ class HeatControlConnection:
         self._reader_exception: Exception | None = None
         self.snapshot: dict[str, Any] = {}
 
+    @property
+    def available(self) -> bool:
+        """Return whether the websocket session can still be used."""
+        return (
+            self._reader_exception is None
+            and not self._closed
+            and not self._ws.closed
+            and self._reader_task is not None
+            and not self._reader_task.done()
+        )
+
     async def start(self) -> None:
         bind_payload = box_encrypt_json(
             self._ha_private_key_obj,
