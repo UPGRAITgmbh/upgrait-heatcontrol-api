@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=78", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "upgrait-heatcontrol-api"
+version = "0.1.0.dev0"
+description = "Async Python API client for the UPGRAIT HeatControl 3rd-party connector."
+readme = "README.md"
+requires-python = ">=3.12"
+license = "LicenseRef-UPGRAIT-Proprietary"
+authors = [
+  {name = "UPGRAIT GmbH"}
+]
+dependencies = [
+  "aiohttp>=3.12,<4",
+  "PyNaCl>=1.5,<2",
+  "zeroconf>=0.136,<1"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3,<9",
+  "pytest-asyncio>=0.24,<1"
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
