@@ -74,3 +74,7 @@ Notes:
 - `HeatControlApiClient` can manage its own `aiohttp` session. In that case, either use `async with HeatControlApiClient(...)` or call `await client.close()`.
 - `HeatControlConnection.subscribe()` registers callbacks for live websocket events and returns an unsubscribe function.
 - Discovery helpers cover both the `/api/ping` `discovery` payload and Zeroconf TXT-record property normalization.
+
+## License
+
+Licensed under the GNU Lesser General Public License v3.0 or later (LGPL-3.0-or-later). See [LICENSE](LICENSE).
